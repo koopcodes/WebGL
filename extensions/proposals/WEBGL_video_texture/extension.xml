@@ -67,9 +67,8 @@ interface WEBGL_video_texture {
     const GLenum TEXTURE_VIDEO_IMAGE_WEBGL             = 0x9248;
     const GLenum SAMPLER_VIDEO_IMAGE_WEBGL             = 0x9249;
 
-    [RaisesException] WebGLVideoFrameInfo shareVideoImageWEBGL(
-      GLenum target, HTMLVideoElement video);
-    [RaiseException] bool releaseVideoImageWEBGL(GLenum target);
+    [RaisesException] WebGLVideoFrameInfo videoTexImage2D(
+        GLenum target, HTMLVideoElement video);
 };
   </idl>
 
@@ -96,10 +95,9 @@ interface WEBGL_video_texture {
     function update() {
         var ext = gl.getExtension('WEBGL_video_texture');
         if(ext !=== null){
-            gl.bindTexture(ext.TEXTURE_VIDEO_IMAGE_WEBGL, videoTexture);
-            ext.shareVideoImageWEBGL(ext.TEXTURE_VIDEO_IMAGE_WEBGL, videoElement);
-            ext.releaseVideoImageWEBGL(ext.TEXTURE_VIDEO_IMAGE_WEBGL);
-            gl.bindTexture(ext.TEXTURE_VIDEO_IMAGE_WEBGL, null);
+            gl.bindTexture(ext.TEXTURE_VIDEO_IMAGE, videoTexture);
+            ext.videoTexImage2D(ext.TEXTURE_VIDEO_IMAGE, videoElement);
+            gl.bindTexture(ext.TEXTURE_VIDEO_IMAGE, null);
         }
     }
 
@@ -150,19 +148,8 @@ interface WEBGL_video_texture {
       <change>Define new sampler and texture type, TEXTURE_VIDEO_IMAGE and SAMPLER_VIDEO_IMAGE.</change>
       <change>Change EGLImageTargetTexture2DOES to VideoElementTargetVideoTexture.</change>
     </revision>
-    <revision date="2019/04/10">
-      <change>Add WEBGL suffix for extension enums.</change>
-      <change>Change function name VideoElementTargetVideoTexture to shareVideoImageWEBGL</change>
-      <change>Declare possible side effect of TEXTURE_VIDEO_IMAGE_WEBGL.</change>
-      <change>Add limitations for TEXTURE_VIDEO_IMAGE_WEBGL</change>
-      <change>Add releaseVideoImageWEBGL and implicit release rules</change>
-    </revision>
-    <revision date="2019/10/25">
-      <change>Define textureVideoWEBGL, rather than using texture2D, in ESSL 1.00 shaders.</change>
-    </revision>
-    <revision date="2019/10/29">
-      <change>Allocate enums for TEXTURE_VIDEO_IMAGE_WEBGL and SAMPLER_VIDEO_IMAGE_WEBGL out of
-      WebGL's current assigned enum block in the OpenGL extension registry.</change>
+    <revision date="2018/09/25">
+      <change>Rename VideoElementTargetVideoTexture to videoTexImage2D.</change>
     </revision>
   </history>
 </proposal>
