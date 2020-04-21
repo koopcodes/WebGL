@@ -1,8 +1,8 @@
-# The Official Khronos WebGL Repository
+# koppTastic WebGL Repository
 
-This is the official home of the Khronos
+This is fork of the official Khronos
 WebGL repository for the WebGL specifications
-and the WebGL conformance test suite.
+and WebGL conformance test suite.
 
 Before adding a new test or editing an existing test
 [please read these guidelines](sdk/tests/test-guidelines.md).
